@@ -167,6 +167,59 @@ fun PreviewDetailScreen() {
    }
 }
 
+@Composable
+fun AdoptScreen(
+   pet: Pet,
+   modifier: Modifier = Modifier,
+   onUpClick: () -> Unit = { }
+) {
+   Scaffold(
+      topBar = {
+         PetAppBar(
+            title = "Thank You!",
+         )
+      }
+   ) { innerPadding ->
+      Column(
+         modifier = modifier.padding(innerPadding)
+      ) {
+         Row(verticalAlignment = Alignment.CenterVertically) {
+            Image(
+               painter = painterResource(pet.imageId),
+               contentDescription = pet.name,
+               modifier = modifier.size(150.dp)
+            )
+            Text(
+               text = "Thank you for adopting ${pet.name}!",
+               modifier = modifier.padding(horizontal = 28.dp),
+               textAlign = TextAlign.Center,
+               style = MaterialTheme.typography.headlineLarge,
+            )
+         }
+         Text(
+            text = "Please pick up your new family member during business hours.",
+            modifier = modifier.padding(6.dp),
+         )
+         Button(
+            onClick = { },
+            modifier = modifier.padding(6.dp)
+         ) {
+            Icon(Icons.Default.Share, null)
+            Text("Share", modifier = modifier.padding(start = 8.dp))
+         }
+      }
+   }
+}
+
+@Preview
+@Composable
+fun PreviewAdoptScreen() {
+   val pet = PetDataSource().loadPets()[0]
+   PetAdoptionTheme {
+      AdoptScreen(pet)
+   }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PetAppBar(
