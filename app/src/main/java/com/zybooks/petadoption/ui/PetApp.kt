@@ -86,6 +86,17 @@ fun ListScreen(
    }
 }
 
+@Preview
+@Composable
+fun PreviewListScreen() {
+   PetAdoptionTheme {
+      ListScreen(
+         petList = PetDataSource().loadPets(),
+         onImageClick = { }
+      )
+   }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PetAppBar(
